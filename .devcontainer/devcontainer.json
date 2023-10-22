@@ -1,0 +1,17 @@
+{
+  "name": "Buildroot",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": { "UID": "${localEnv:UID}", "GID": "${localEnv:GID}", "USERNAME": "ubuntu"}
+  },
+
+  "workspaceMount": "source=${localWorkspaceFolder}/buildroot,target=/home/ubuntu/buildroot,",
+  "workspaceFolder": "/home/ubuntu/buildroot",
+
+  "mounts": [
+    "source=${localEnv:SSH_AUTH_SOCK},target=${localEnv:SSH_AUTH_SOCK},type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/ubuntu/.gitconfig,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/buildroot,target=/home/ubuntu/buildroot,type=bind,consistency=cached"
+  ]
+}
